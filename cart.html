@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Expires" content="0">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Cache-control" content="no-cache">
+    <meta http-equiv="Cache" content="no-cache">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>易买网</title>
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/common.css">
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+
+    <link rel="stylesheet" type="text/css" href="css/cart.css">
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="js/global/jquery-3.3.1.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/global/bootstrap.min.js"></script>
+    <!--导入布局js，共享header和footer-->
+    <script type="text/javascript" src="js/include.js"></script>
+</head>
+
+<script>
+    $(function () {
+        //初始化
+        $('#settlementEvent').click(()=>{
+            $('#step1')[0].className = "step1"
+            $('#step2')[0].className = "step2 active"
+        })
+
+        $('#submitOrder').click(()=>{
+            
+            $('#step2')[0].className = "step2"
+            $('#step3')[0].className = "step3 active"
+        })
+    });
+
+</script>
+
+<body>
+    <!--引入头部-->
+    <div id="header"></div>
+
+    <div class="step">
+        <div id="step1" class="step1 active">
+            <img class="stepImg" src="./images/img1.jpg" />
+
+            <div style="border: 1px solid #cccccc;">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col" hidden>#</th>
+                            <th scope="col" class="tableHead">商品名称</th>
+                            <th scope="col" class="tableHead">属性</th>
+                            <th scope="col" class="tableHead">购买数量</th>
+                            <th scope="col" class="tableHead">小计</th>
+                            <th scope="col" class="tableHead">返还积分</th>
+                            <th scope="col" class="tableHead">操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row" hidden>1</th>
+                            <td>
+                                <div class="flex_line">
+                                    <img src="./images/c_1.jpg" />
+                                    商品名称1
+                                </div>
+                            </td>
+                            <td><div class="table_line" >颜色：灰色</div></td>
+                            <td>
+                                <div class="table_line">
+                                    <div class="amount">
+                                        <div class="amountAdd">+</div>
+                                            <input id="amount" type="text" class="inputNum" value="1" maxlength="8" title="请输入购买量">
+                                        <div class="amountReduce">-</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td><div class="table_line cash">￥648.0</div></td>
+                            <td><div class="table_line ">18R</div></td>
+                            <td><div class="table_line ">
+                                <a href="#">删除</a>
+                                <a href="#">加入收藏</a>
+                            </div></td>
+                        </tr>
+                        <tr>
+                            <th scope="row" hidden>2</th>
+                            <td>
+                                <div class="flex_line">
+                                    <img src="./images/c_2.jpg" />
+                                    商品名称2
+                                </div>
+                            </td>
+                            <td><div class="table_line">颜色：灰色</div></td>
+                            <td>
+                                <div class="table_line">
+                                    <div class="amount">
+                                        <div class="amountAdd">+</div>
+                                            <input id="amount" type="text" class="inputNum" value="1" maxlength="8" title="请输入购买量">
+                                        <div class="amountReduce">-</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td><div class="table_line cash">￥648.0</div></td>
+                            <td><div class="table_line ">18R</div></td>
+                            <td><div class="table_line ">
+                                <a href="#">删除</a>
+                                <a href="#">加入收藏</a>
+                            </div></td>
+                        </tr>
+                        <tr>
+                            <th scope="row" hidden>3</th>
+                            <td>
+                                <div class="flex_line">
+                                    <img src="./images/c_3.jpg" />
+                                    商品名称3
+                                </div>
+                            </td>
+                            <td><div class="table_line">颜色：灰色</div></td>
+                            <td>
+                                <div class="table_line">
+                                    <div class="amount">
+                                        <div class="amountAdd">+</div>
+                                            <input id="amount" type="text" class="inputNum" value="1" maxlength="8" title="请输入购买量">
+                                        <div class="amountReduce">-</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td><div class="table_line cash">￥648.0</div></td>
+                            <td><div class="table_line ">18R</div></td>
+                            <td><div class="table_line ">
+                                <a href="#">删除</a>
+                                <a href="#">加入收藏</a>
+                            </div></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="settlement">
+                    <div class="cleanCar">
+                        <input type="checkbox" /> 
+                        <span>清空购物车</span>
+                    </div>
+
+                    <div class="allPrice">商品总价：<div class="price">￥1944.0</div></div>
+
+                </div>
+
+                <div class="settlementBtns">
+                    <img src="./images/buy1.gif" />
+                    <img id="settlementEvent" src="./images/buy2.gif" />
+                </div>
+            </div>
+        </div>
+
+        <div id="step2" class="step2 ">
+            <img class="stepImg" src="./images/img2.jpg" />
+
+            <div>
+                <div class="carItems">
+                    <div class="carTitle">
+                        <div>商品列表</div>
+                        <div style="color: #f84d00;">修改</div>
+                    </div>
+
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th scope="col" hidden>#</th>
+                                <th scope="col" class="tableHead">商品名称</th>
+                                <th scope="col" class="tableHead">属性</th>
+                                <th scope="col" class="tableHead">购买数量</th>
+                                <th scope="col" class="tableHead">小计</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row" hidden>1</th>
+                                <td>
+                                    <div class="flex_line">
+                                        <img src="./images/c_1.jpg" />
+                                        商品名称1
+                                    </div>
+                                </td>
+                                <td><div class="table_line" >颜色：灰色</div></td>
+                                <td>
+                                    <div class="table_line">1
+                                    </div>
+                                </td>
+                                <td><div class="table_line cash">￥648.0</div></td>
+                            </tr>
+                            <tr>
+                                <th scope="row" hidden>2</th>
+                                <td>
+                                    <div class="flex_line">
+                                        <img src="./images/c_2.jpg" />
+                                        商品名称2
+                                    </div>
+                                </td>
+                                <td><div class="table_line">颜色：灰色</div></td>
+                                <td>
+                                    <div class="table_line">1
+                                    </div>
+                                </td>
+                                <td><div class="table_line cash">￥648.0</div></td>
+                            </tr>
+                            <tr>
+                                <th scope="row" hidden>3</th>
+                                <td>
+                                    <div class="flex_line">
+                                        <img src="./images/c_3.jpg" />
+                                        商品名称3
+                                    </div>
+                                </td>
+                                <td><div class="table_line">颜色：灰色</div></td>
+                                <td>
+                                    <div class="table_line">1
+                                    </div>
+                                </td>
+                                <td><div class="table_line cash">￥648.0</div></td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="settlement">
+                        <div class="cleanCar">
+                        </div>
+                        <div class="allPrice">商品总价：<div class="price">￥1944.0</div></div>
+                    </div>
+
+                    <div class="carTitle">
+                        <div>收件人信息</div>
+                        <div style="color: #f84d00;">修改</div>
+                    </div>
+
+                    <div style="margin-bottom: 40px;">
+                        <form class="subForm">
+                            <div class="form-row">
+                              <div class="form-group col-md-6">
+                                <label for="colFormLabel" class="col-sm-5 formLabel">商品名称</label>
+                                <div class="col-sm-7" style="padding: 0;">
+                                    <input type="email" class="formInput" id="name" placeholder="">
+                                </div>
+                              </div>
+                              <div class="form-group col-md-6">
+                                <label for="colFormLabel" class="col-sm-5 formLabel">电子邮件</label>
+                                <div class="col-sm-7" style="padding: 0;">
+                                    <input type="email" class="formInput" id="email" placeholder="">
+                                </div>
+                              </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                  <label for="colFormLabel" class="col-sm-5 formLabel">详细信息</label>
+                                  <div class="col-sm-7" style="padding: 0;">
+                                      <input type="email" class="formInput" id="info" placeholder="">
+                                  </div>
+                                </div>
+                                <div class="form-group col-md-6">
+                                  <label for="colFormLabel" class="col-sm-5 formLabel">邮政编码</label>
+                                  <div class="col-sm-7" style="padding: 0;">
+                                      <input type="email" class="formInput" id="postCode" placeholder="">
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="form-row">
+                                <div class="form-group col-md-6">
+                                  <label for="colFormLabel" class="col-sm-5 formLabel">电话</label>
+                                  <div class="col-sm-7" style="padding: 0;">
+                                      <input type="email" class="formInput" id="phone" placeholder="">
+                                  </div>
+                                </div>
+                                <div class="form-group col-md-6">
+                                  <label for="colFormLabel" class="col-sm-5 formLabel">手机</label>
+                                  <div class="col-sm-7" style="padding: 0;">
+                                      <input type="email" class="formInput" id="mobile" placeholder="">
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="form-row">
+                                <div class="form-group col-md-6">
+                                  <label for="colFormLabel" class="col-sm-5 formLabel">标志建筑</label>
+                                  <div class="col-sm-7" style="padding: 0;">
+                                      <input type="email" class="formInput" id="build" placeholder="">
+                                  </div>
+                                </div>
+                                <div class="form-group col-md-6">
+                                  <label for="colFormLabel" class="col-sm-5 formLabel">地址</label>
+                                  <div class="col-sm-7" style="padding: 0;">
+                                      <input type="email" class="formInput" id="address" placeholder="">
+                                  </div>
+                                </div>
+                              </div>
+                        </form>
+                    </div>
+                    
+                    <div class="carTitle">
+                        <div>配送方式</div>
+                    </div>
+
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th scope="col" hidden>#</th>
+                                <th scope="col" class="tableHead"> </th>
+                                <th scope="col" class="tableHead">名称</th>
+                                <th scope="col" class="tableHead">描述</th>
+                                <th scope="col" class="tableHead">费用</th>
+                                <th scope="col" class="tableHead">免额</th>
+                                <th scope="col" class="tableHead">保价费用</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            <tr>
+                                <th scope="row" hidden>1</th>
+                                <td>
+                                    <div class="table_line" >
+                                        <input type="checkbox">
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="table_line">
+                                        申通快递
+                                    </div>
+                                </td>
+                                <td><div class="table_line" >自己写吧，我不打了</div></td>
+                                <td>
+                                    <div class="table_line">￥15
+                                    </div>
+                                </td>
+                                <td><div class="table_line ">￥0.0</div></td>
+                                <td><div class="table_line ">不支持保价</div></td>
+                            </tr>
+
+                            <tr>
+                                <th scope="row" hidden>2</th>
+                                <td>
+                                    <div class="table_line" >
+                                        <input type="checkbox">
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="table_line">
+                                        城际快递
+                                    </div>
+                                </td>
+                                <td><div class="table_line">自己写吧，我不打了</div></td>
+                                <td>
+                                    <div class="table_line">￥15
+                                    </div>
+                                </td>
+                                <td><div class="table_line ">￥0.0</div></td>
+                                <td><div class="table_line ">不支持保价</div></td>
+                            </tr>
+
+                            <tr>
+                                <th scope="row" hidden>3</th>
+                                <td>
+                                    <div class="table_line" >
+                                        <input type="checkbox">
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="table_line">
+                                        邮局平邮
+                                    </div>
+                                </td>
+                                <td><div class="table_line">自己写吧，我不打了</div></td>
+                                <td>
+                                    <div class="table_line">￥15
+                                    </div>
+                                </td>
+                                <td><div class="table_line ">￥0.0</div></td>
+                                <td><div class="table_line ">不支持保价</div></td>
+                            </tr>
+
+                            <tr>
+                                <td class="lastLine" colspan="6">
+                                    <input type="checkbox">
+                                    配送是否需要保价
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="carTitle">
+                        <div>支付方式</div>
+                    </div>
+
+                    <div class="typeBtns">
+                        <div class="btn">余额支付</div>
+                        <div class="btn">银行支付</div>
+                        <div class="btn">货到付款</div>
+                        <div class="btn">支付宝</div>
+                    </div>
+
+                    <div class="settlement">
+                        <div class="cleanCar">
+                        </div>
+                        <div class="allPrice">应付款金额：<div class="price">￥1944.0</div></div>
+                    </div>
+
+                    <div style="display: flex;justify-content: flex-end;cursor: pointer;">
+                        <img id="submitOrder" src="./images/btn_sure.gif" />
+                    </div>
+                </div>
+
+                
+            </div>
+
+        </div>
+
+        <div id="step3" class="step3 ">
+            <img class="stepImg" src="./images/img3.jpg" />
+
+            <div class='finalList'>
+                <div class="listInfo">
+                    <div>感谢您在xxxxxxxxxxxxx，请记住您的订单号是:<span>12345678912</span></div>
+                    <div class="userSearch">
+                        <div>您选定的xxx是：<span>xxxx</span></div>
+                        <div>您选定的xxx是：<span>xxxx</span></div>
+                        <div>您选定的xxx是：<span>xxxx</span></div>
+                    </div>
+                </div>
+                <div class="note">
+                    <div>银行名称 收款人信息：全称：xxxxxx；账号或地址：xxxxxxx；开户行 xxxxxxxxxxx</div>
+                    <div>注意事项：xxxxxxxxx</div>
+                </div>
+                <div class="link">
+                    <a>首页</a>
+                    <a>用户中心</a>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+</body>
+
+</html>
