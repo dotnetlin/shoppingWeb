@@ -1,0 +1,147 @@
+.info{
+    display: flex;
+    justify-content: center;
+}
+.mainImg{
+    width: 300px;
+    height: 300px;
+    background: url('../images/make_1.jpg') no-repeat center center;
+    background-size: contain;
+    border: 1px solid #cccccc;
+}
+.b_left{
+    background: url('../images/r_left.png') no-repeat center center;
+    background-size: contain;
+}
+.b_right{
+    background: url('../images/r_right.png') no-repeat center center;
+    background-size: contain;
+}
+.b_left,.b_right{
+    width: 15px;
+}
+.img_1,.img_2,.img_3,.img_4{
+    width: 62px;
+    height: 62px;
+    margin: 10px 2px;
+}
+.img_1{
+    background: url('../images/make_1.jpg') no-repeat center center;
+    background-size: contain;
+}
+.img_2{
+    background: url('../images/make_2.jpg') no-repeat center center;
+    background-size: contain;
+}
+.img_3{
+    background: url('../images/make_3.jpg') no-repeat center center;
+    background-size: contain;
+}
+.img_4{
+    background: url('../images/make_4.jpg') no-repeat center center;
+    background-size: contain;
+}
+.s_img{
+    border: 1px solid #cccccc;
+}
+
+.infoImgSearch{
+    display: flex;
+}
+.infoImgSearch .active{
+    border: 1px solid #f84d00;
+}
+
+.item_info{
+    width: calc(50% - 50px);
+    padding-left: 40px;
+}
+.main-title{
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 21px;
+    color: #3C3C3C;
+}
+.main-describe{
+    font-size: 12px;
+    color: #919191;
+    margin: 6px 2px 20px 2px;
+}
+.promoPrice,.promoCoin{
+    display: flex;
+    align-items: baseline;
+    margin: 6px 0;
+}
+.promoCoin{
+    margin-bottom: 20px;
+}
+.promoPrice .price{
+    font-size: 24px;
+	color: #f84d00;
+	padding:0 6px;
+}
+
+.typeSearch{
+    display: flex;
+    align-items: center;
+    margin: 10px 0;
+}
+
+.typeBtns{
+    display: flex;
+}
+
+.typeBtns .btn{
+    border: 1px solid #cccccc;
+    border-radius: 0;
+    margin: 0 8px;
+    padding: 2px 12px;
+}
+
+.favor{
+    display: flex;
+    margin: 32px 2px;
+}
+.favor img{
+    width: 14px;
+    height: 14px;
+}
+.favor div{
+    display: flex;
+    align-items: center;
+    padding: 2px 6px;
+}
+
+.join_car{
+    display: flex;
+    align-items: center;
+}
+
+.join_car img{
+    margin-left: 60px;
+}
+
+.inputNum{
+    border: 1px solid #cccccc;
+    width: 80px;
+    height: 40px;
+    text-align: center;
+    border-right: 0;
+    font-size: 16px;
+}
+.amountAdd,.amountReduce{
+    border: 1px solid #cccccc;
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    cursor: pointer;
+}
+.brand{
+    text-align: center;
+    border: 1px solid #eeeeee;
+}
+.brand div{
+    background-color: #f5f5f5;
+    border-top: 1px solid #eeeeee;
+    padding: 12px 0;
+}

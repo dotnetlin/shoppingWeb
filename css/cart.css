@@ -1,0 +1,182 @@
+.step{
+    text-align: center;
+}
+.step .active{
+    display: inline-block;
+    width: calc(50% + 500px);
+}
+.step1,.step2,.step3{
+    display: none;
+}
+.stepImg{
+    margin: 20px;
+}
+
+.tableHead{
+    text-align: center;
+    border-right: 1px solid #cccccc;
+}
+
+.table_line{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height:74px;
+}
+
+.amount{
+    display: flex;
+    border: 1px solid #cccccc;
+}
+.inputNum{
+    width: 60px;
+    height: 30px;
+    text-align: center;
+    font-size: 16px;
+}
+
+.amountAdd,.amountReduce{
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    background-color: #eeeeee;
+}
+
+.cash{
+    color: #f84d00;
+    font-size: 16px;
+}
+
+.table_line a{
+    padding: 0 6px;
+    color: #000;
+}
+
+.lastLine{
+    text-align: right;
+}
+
+.settlement{
+    display: flex;
+    justify-content: space-between;
+}
+
+.settlement div{
+    display: flex;
+    margin: 12px;
+}
+.cleanCar{
+    align-items: center;
+}
+.cleanCar span{
+    margin: 4px 2px 0 2px;
+}
+
+.allPrice{
+    align-items: baseline;
+}
+
+.price{
+    color: #f84d00;
+    font-size: 24px;
+    font-weight: bold;
+    padding: 0;
+}
+
+.carItems{
+    border: 1px solid #dddddd;
+    padding: 20px 46px;
+    margin-bottom: 40px;
+}
+
+.carTitle{
+    display: flex;
+    justify-content: space-between;
+    margin: 6px 0;
+}
+.carItems table{
+    border: 1px solid #dddddd;
+}
+
+.settlementBtns{
+    display: flex;
+    justify-content: flex-end;
+    margin: 12px;
+    align-items: center;
+}
+.settlementBtns img{
+    margin: 0 6px;
+    cursor: pointer;
+}
+
+.formLabel{
+    background-color: #eeeeee;
+    padding: 10px 0;
+    border-right: 1px solid #dddddd;
+    border-bottom: 1px solid #dddddd;
+}
+.form-group{
+    margin-bottom: 0;
+    padding: 0;
+}
+.formInput{
+    height: 41px;
+    width: 100%;
+    font-size: 16px;
+    border-right: 1px solid #dddddd;
+    border-bottom: 1px solid #dddddd;
+}
+.subForm{
+    border-left: 1px solid #dddddd;
+    border-top: 1px solid #dddddd;
+    display: inline-block;
+    width: 100%;
+}
+
+.typeBtns{
+    display: flex;
+    margin: 16px 0;
+}
+
+.typeBtns .btn{
+    border: 1px solid #cccccc;
+    border-radius: 0;
+    margin-right: 8px;
+    padding: 6px 12px;
+}
+
+.finalList{
+    border: 1px solid #f84d00;
+    padding: 20px
+}
+.listInfo{
+    font-size: 24px;
+}
+.listInfo span{
+    color: #f84d00;
+}
+
+.userSearch{
+    display: flex;
+    justify-content: center;
+    font-size: 18px;
+    margin: 16px 124px;
+    border-bottom: 1px solid #999999;
+    padding-bottom: 24px;
+}
+.userSearch div{
+    margin: 0 6px;
+}
+
+.note{
+    /* display: flex;
+    justify-content: center; */
+    font-size: 16px;
+}
+.link{
+    margin: 32px;
+}
+.link a{
+    color: #000;
+    margin: 0 12px;
+}
