@@ -3,7 +3,41 @@
 <script>
     $(function () {
         //初始化
+        $("#search-button").click(() => {
+            console.log($('#search_input').val())
+            let name = $('#search_input').val()
+            window.location.href = "./commodity.html?commodity=" + $('#search_input').val()
+        })
 
+        //获取购物车
+        $.get('http://localhost:8080/getCars').then(res => {
+            console.log(JSON.parse(res).data)
+            let itemListWord = ''
+            let allPrice = 0
+            let carsArray = JSON.parse(res).data
+            carsArray.forEach(e => {
+                itemListWord += `<li>
+                    <div class="carItemStyle">
+                        <img src=`+e.imgUrl+`>
+                        <div>
+                            <div class="carName">`+e.name +`</div>
+                            <div><span class="carPrice">￥ `+ e.price +`</span><span class="carNum">X`+e.number+`</span></div>
+                        </div>
+                    </div>
+                </li>`
+                allPrice += e.price * e.number
+            });
+
+            itemListWord += `<div class="allPrice">总计：<span class="carPrice">`+ allPrice +`</span></div>`
+
+            itemListWord +=`<div class="settleDom"><a href="./cart.html" class="settleBtn">去购物车结算</a></div>`
+
+            $("#carItem").html(itemListWord)
+        })
+    
+        // $("#settleCars").click(()=>{
+        //     window.location.href = "./cart.html"
+        // })
     });
 
 </script>
@@ -82,123 +116,143 @@
                 </div>
             </div>
             <div class="hottel">
-                <div class="dropdown">
+                <div style="position: absolute;">
+                    <div class="dropdown">
+                        <button class="btn btn-default dropdown-toggle flex_line" type="button" id="shopCar"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                            <img src="images/car.png" />
+                            <div class="padding_min">购物车</div>
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="shopCar" id="carItem">
+                            <li><a href="#">还未登录，马上登录查看购物车</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- <div >
                     <button class="btn btn-default dropdown-toggle flex_line" type="button" id="shopCar"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                         <img src="images/car.png" />
                         <div class="padding_min">购物车</div>
                         <span class="caret"></span>
                     </button>
-                    <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="shopCar">
-                        <li><a href="#">还未登录，马上登录查看购物车</a></li>
-
+                    <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="shopCar" id="carItem">
+                        <li>
+                            <div><img src="../images/car1.jpg"> <div>迪奥香水1</div><div><span>￥399</span><span>X1</span></div></div>
+                        </li>
                     </ul>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>
     <div class="navitems">
         <div class="allType">
-            <div class="typeSearch dropdown-toggle flex_line" type="button" id="commodityMenu"
-                data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                <div class="typeWord">
-                    <span>全部商品分类</span>
+            <div style="position: absolute;width: 25%;text-align: center;">
+                <div class="dropdown" style="display: inline-block;">
+                    <div class="typeSearch dropdown-toggle flex_line" type="button" id="commodityMenu"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                        <div class="typeWord">
+                            <span>全部商品分类</span>
+                        </div>
+                    </div>
+                    <ul class="dropdown-menu" aria-labelledby="commodityMenu">
+                        <li>
+                            <div style="display: flex;color: #f84d00;justify-content: space-between;">
+                                <div class="flex_line">
+                                    <img src="./images/nav1.png">
+                                    <span>进口食品、生鲜</span>
+                                </div>
+                                <span class="glyphicon glyphicon-menu-right" style="padding-left: 2px;"></span>
+                            </div>
+                        </li>
+                        <li>
+                            <div style="display: flex;color: #f84d00;justify-content: space-between;">
+                                <div class="flex_line">
+                                    <img src="./images/nav2.png">
+                                    <span>食品、饮料、酒</span>
+                                </div>
+                                <span class="glyphicon glyphicon-menu-right" style="padding-left: 2px;"></span>
+                            </div>
+                        </li>
+                        <li>
+                            <div style="display: flex;color: #f84d00;justify-content: space-between;">
+                                <div class="flex_line">
+                                    <img src="./images/nav3.png">
+                                    <span>母婴、玩具、童装</span>
+                                </div>
+                                <span class="glyphicon glyphicon-menu-right" style="padding-left: 2px;"></span>
+                            </div>
+                        </li>
+                        <li>
+                            <div style="display: flex;color: #f84d00;justify-content: space-between;">
+                                <div class="flex_line">
+                                    <img src="./images/nav4.png">
+                                    <span>家居、家庭清洁、纸品</span>
+                                </div>
+                                <span class="glyphicon glyphicon-menu-right" style="padding-left: 2px;"></span>
+                            </div>
+                        </li>
+                        <li>
+                            <div style="display: flex;color: #f84d00;justify-content: space-between;">
+                                <div class="flex_line">
+                                    <img src="./images/nav5.png">
+                                    <span>美妆、个人护理、洗护</span>
+                                </div>
+                                <span class="glyphicon glyphicon-menu-right" style="padding-left: 2px;"></span>
+                            </div>
+                        </li>
+                        <li>
+                            <div style="display: flex;color: #f84d00;justify-content: space-between;">
+                                <div class="flex_line">
+                                    <img src="./images/nav6.png">
+                                    <span>女装、内衣、中老年</span>
+                                </div>
+                                <span class="glyphicon glyphicon-menu-right" style="padding-left: 2px;"></span>
+                            </div>
+                        </li>
+                        <li>
+                            <div style="display: flex;color: #f84d00;justify-content: space-between;">
+                                <div class="flex_line">
+                                    <img src="./images/nav7.png">
+                                    <span>鞋靴、箱包、腕表配饰</span>
+                                </div>
+                                <span class="glyphicon glyphicon-menu-right" style="padding-left: 2px;"></span>
+                            </div>
+                        </li>
+                        <li>
+                            <div style="display: flex;color: #f84d00;justify-content: space-between;">
+                                <div class="flex_line">
+                                    <img src="./images/nav8.png">
+                                    <span>男装、运动</span>
+                                </div>
+                                <span class="glyphicon glyphicon-menu-right" style="padding-left: 2px;"></span>
+                            </div>
+                        </li>
+                        <li>
+                            <div style="display: flex;color: #f84d00;justify-content: space-between;">
+                                <div class="flex_line">
+                                    <img src="./images/nav9.png">
+                                    <span>手机、小家电、电脑</span>
+                                </div>
+                                <span class="glyphicon glyphicon-menu-right" style="padding-left: 2px;"></span>
+                            </div>
+                        </li>
+                        <li>
+                            <div style="display: flex;color: #f84d00;justify-content: space-between;">
+                                <div class="flex_line">
+                                    <img src="./images/nav10.png">
+                                    <span>礼品，充值</span>
+                                </div>
+                                <span class="glyphicon glyphicon-menu-right" style="padding-left: 2px;"></span>
+                            </div>
+                        </li>
+                    </ul>
                 </div>
             </div>
-            <ul class="dropdown-menu" aria-labelledby="commodityMenu">
-                <li>
-                    <div style="display: flex;color: #f84d00;justify-content: space-between;">
-                        <div class="flex_line">
-                            <img src="./images/nav1.png">
-                            <span>进口食品、生鲜</span>
-                        </div>
-                        <span class="glyphicon glyphicon-menu-right" style="padding-left: 2px;"></span>
-                    </div>
-                </li>
-                <li>
-                    <div style="display: flex;color: #f84d00;justify-content: space-between;">
-                        <div class="flex_line">
-                            <img src="./images/nav2.png">
-                            <span>食品、饮料、酒</span>
-                        </div>
-                        <span class="glyphicon glyphicon-menu-right" style="padding-left: 2px;"></span>
-                    </div>
-                </li>
-                <li>
-                    <div style="display: flex;color: #f84d00;justify-content: space-between;">
-                        <div class="flex_line">
-                            <img src="./images/nav3.png">
-                            <span>母婴、玩具、童装</span>
-                        </div>
-                        <span class="glyphicon glyphicon-menu-right" style="padding-left: 2px;"></span>
-                    </div>
-                </li>
-                <li>
-                    <div style="display: flex;color: #f84d00;justify-content: space-between;">
-                        <div class="flex_line">
-                            <img src="./images/nav4.png">
-                            <span>家居、家庭清洁、纸品</span>
-                        </div>
-                        <span class="glyphicon glyphicon-menu-right" style="padding-left: 2px;"></span>
-                    </div>
-                </li>
-                <li>
-                    <div style="display: flex;color: #f84d00;justify-content: space-between;">
-                        <div class="flex_line">
-                            <img src="./images/nav5.png">
-                            <span>美妆、个人护理、洗护</span>
-                        </div>
-                        <span class="glyphicon glyphicon-menu-right" style="padding-left: 2px;"></span>
-                    </div>
-                </li>
-                <li>
-                    <div style="display: flex;color: #f84d00;justify-content: space-between;">
-                        <div class="flex_line">
-                            <img src="./images/nav6.png">
-                            <span>女装、内衣、中老年</span>
-                        </div>
-                        <span class="glyphicon glyphicon-menu-right" style="padding-left: 2px;"></span>
-                    </div>
-                </li>
-                <li>
-                    <div style="display: flex;color: #f84d00;justify-content: space-between;">
-                        <div class="flex_line">
-                            <img src="./images/nav7.png">
-                            <span>鞋靴、箱包、腕表配饰</span>
-                        </div>
-                        <span class="glyphicon glyphicon-menu-right" style="padding-left: 2px;"></span>
-                    </div>
-                </li>
-                <li>
-                    <div style="display: flex;color: #f84d00;justify-content: space-between;">
-                        <div class="flex_line">
-                            <img src="./images/nav8.png">
-                            <span>男装、运动</span>
-                        </div>
-                        <span class="glyphicon glyphicon-menu-right" style="padding-left: 2px;"></span>
-                    </div>
-                </li>
-                <li>
-                    <div style="display: flex;color: #f84d00;justify-content: space-between;">
-                        <div class="flex_line">
-                            <img src="./images/nav9.png">
-                            <span>手机、小家电、电脑</span>
-                        </div>
-                        <span class="glyphicon glyphicon-menu-right" style="padding-left: 2px;"></span>
-                    </div>
-                </li>
-                <li>
-                    <div style="display: flex;color: #f84d00;justify-content: space-between;">
-                        <div class="flex_line">
-                            <img src="./images/nav10.png">
-                            <span>礼品，充值</span>
-                        </div>
-                        <span class="glyphicon glyphicon-menu-right" style="padding-left: 2px;"></span>
-                    </div>
-                </li>
-            </ul>
         </div>
-        <div class="flex_line navitems-lk" >
+
+
+        <div class="flex_line navitems-lk">
             <a href="#">首页</a>
             <a href="#">美食</a>
             <a href="#">生鲜</a>

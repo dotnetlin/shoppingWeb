@@ -1,0 +1,126 @@
+{
+    "name": "json",
+    "version": "1.0.0",
+    "dependencies": {
+      "shangping":[
+        {
+            "id":1,
+          "name":"香奈儿邂逅清新淡香水50ml",
+          "address":"per_1.jpg",
+          "price":"198",
+          "inventory":"26",
+          "model": "50ml",
+          "color": "白色"
+        },
+        {
+            "id":2,
+          "name":"香奈儿邂逅清新淡香水50ml",
+          "address":"per_2.jpg",
+          "price":"198",
+          "inventory":"26",
+          "model": "50ml",
+          "color": "白色"
+        },
+        {
+            "id":3,
+          "name":"香奈儿邂逅清新淡香水50ml",
+          "address":"per_3.jpg",
+          "price":"198",
+          "inventory":"26",
+          "model": "50ml",
+          "color": "白色"
+        },
+        {
+            "id":4,
+          "name":"香奈儿邂逅清新淡香水50ml",
+          "address":"per_4.jpg",
+          "price":"198",
+          "inventory":"26",
+          "model": "50ml",
+          "color": "白色"
+        },
+        {
+            "id":5,
+          "name":"香奈儿邂逅清新淡香水50ml",
+          "address":"per_5.jpg",
+          "price":"198",
+          "inventory":"26",
+          "model": "50ml",
+          "color": "白色"
+        },
+        {
+            "id":6,
+          "name":"香奈儿邂逅清新淡香水50ml",
+          "address":"per_6.jpg",
+          "price":"198",
+          "inventory":"26",
+          "model": "50ml",
+          "color": "白色"
+        },
+        {
+            "id":7,
+          "name":"香奈儿邂逅清新淡香水50ml",
+          "address":"per_6.jpg",
+          "price":"198",
+          "inventory":"26",
+          "model": "50ml",
+          "color": "白色"
+        },
+        {
+            "id":8,
+          "name":"香奈儿邂逅清新淡香水50ml",
+          "address":"per_7.jpg",
+          "price":"198",
+          "inventory":"26",
+          "model": "50ml",
+          "color": "白色"
+        },
+        {
+            "id":9,
+          "name":"香奈儿邂逅清新淡香水50ml",
+          "address":"per_8.jpg",
+          "price":"198",
+          "inventory":"26",
+          "model": "50ml",
+          "color": "白色"
+        },
+        {
+            "id":10,
+          "name":"香奈儿邂逅清新淡香水50ml",
+          "address":"per_9.jpg",
+          "price":"198",
+          "inventory":"26",
+          "model": "50ml",
+          "color": "白色"
+        },
+        {
+            "id":11,
+          "name":"香奈儿邂逅清新淡香水50ml",
+          "address":"per_10.jpg",
+          "price":"198",
+          "inventory":"26",
+          "model": "50ml",
+          "color": "白色"
+        },
+        {
+            "id":12,
+          "name":"香奈儿邂逅清新淡香水50ml",
+          "address":"per_11.jpg",
+          "price":"198",
+          "inventory":"26",
+          "model": "50ml",
+          "color": "白色"
+        },
+        {
+            "id":13,
+          "name":"香奈儿邂逅清新淡香水50ml",
+          "address":"per_12.jpg",
+          "price":"198",
+          "inventory":"26",
+          "model": "50ml",
+          "color": "白色"
+        }
+      ]
+    }
+  }
+  

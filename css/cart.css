@@ -163,6 +163,7 @@
     margin: 16px 124px;
     border-bottom: 1px solid #999999;
     padding-bottom: 24px;
+    align-items: baseline;
 }
 .userSearch div{
     margin: 0 6px;

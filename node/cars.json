@@ -1,0 +1,24 @@
+{
+    "data": [
+        {
+            "id": "1",
+            "code": "xs1",
+            "name": "迪奥香水1",
+            "typeId": "xst1",
+            "typeWord": "50ml",
+            "imgUrl": "../images/car1.jpg",
+            "number": 1,
+            "price": 399
+        },
+        {
+            "code": "xs1",
+            "name": "香奈儿邂逅清新淡香水50ml",
+            "typeId": "xst1",
+            "typeWord": "50ml",
+            "imgUrl": "../images/per_1.jpg",
+            "number": "2",
+            "price": "198",
+            "id": "2"
+        }
+    ]
+}

@@ -1,0 +1,55 @@
+{
+    "name": "json",
+    "version": "1.0.0",
+    "dependencies": {
+      "shangping":[
+        {
+          "brands": [
+            {"code":"Chanel","name":"香奈儿"},
+            {"code":"Dior","name":"迪奥"},
+            {"code":"VERSACE","name":"范思哲"},
+            {"code":"Ferragamo","name":"菲拉格慕"},
+            {"code":"LANCOME","name":"兰蔻"},
+            {"code":"HERMES","name":"爱马仕"},
+            {"code":"Calvin Klein","name":"卡文克莱"},
+            {"code":"GUCCI","name":"古驰"},
+            {"code":"Dior","name":"迪奥"},
+            {"code":"BVLGARI","name":"宝格丽"},
+            {"code":"Adidas","name":"阿迪达斯"},
+            {"code":"CK","name":"卡尔文.克莱恩"},
+            {"code":"LYHX","name":"凌仕"},
+            {"code":"Davidoff","name":"大卫杜夫"},
+            {"code":"Anna sui","name":"安娜苏"},
+            {"code":"ARMANI","name":"阿玛尼"},
+            {"code":"Guerlain","name":"娇兰"}
+          ],
+          "priceRange": [
+            {"range": "0-199"},
+            {"range": "200-399"},
+            {"range": "400-699"},
+            {"range": "600-899"},
+            {"range": "900-1299"},
+            {"range": "1300-1399"},
+            {"range": "1399及以上"}
+          ],
+          "perfumeType": [
+            {"type": "女士香水"},
+            {"type": "男士香水"},
+            {"type": "Q版香水"},
+            {"type": "组合套装"},
+            {"type": "香体走珠"},
+            {"type": "其他"}
+          ],
+          "fragranceType": [
+            {"type": "浓香水"},
+            {"type": "香精Parfum香水"},
+            {"type": "淡香精EDP淡香水"},
+            {"type": "香露EDT"},
+            {"type": "古龙水"},
+            {"type": "其他"}
+          ]
+      }
+      ]
+    }
+  }
+  

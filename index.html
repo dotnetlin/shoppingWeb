@@ -19,6 +19,7 @@
     <script src="js/global/jquery-3.3.1.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="js/global/bootstrap.min.js"></script>
+    
     <!--导入布局js，共享header和footer-->
     <script type="text/javascript" src="js/include.js"></script>
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -29,6 +30,13 @@
     <![endif]-->
 </head>
 <body>
+    <script>
+        $(function(){
+            $('.liStyle').click(()=>{
+                window.location.href = "./commodity.html"
+            })
+        })
+    </script>
 	<!--引入头部-->
     <div id="header"></div>
 

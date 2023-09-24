@@ -191,6 +191,7 @@
 .cardlist::-webkit-scrollbar { width: 0px; }
 .commodityCard{
 	text-align: center;
+	cursor: pointer;
 }
 .commodityCard img{
 	display: inline-block;

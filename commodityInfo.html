@@ -28,7 +28,77 @@
 <script>
     $(function () {
         //初始化
-       
+        //获取当前URL中的查询字符串部分（即问号后面的部分）
+        //存储商品参数
+        var commodity = {}
+        var params = new URLSearchParams(window.location.search);
+        let commodityName = params.get('id');
+
+        //获取商品
+        $.get('http://localhost:8080/getCommodity?id='+commodityName).then(res => {
+            commodity = res
+            console.log(res,$('#breadName').text())
+            $('#breadName').html(res.name)
+            $('#mainName').html(res.name)
+            $('.price').html('￥'+res.price)
+
+            let imgHtml = `<div class="b_left"></div>
+                <div id="photolist" style="height: 60px;display: flex;">
+                    <div class="s_img active" style="background: url('../images/`+ res.address +`') no-repeat center center;background-size: contain;"></div>
+                    <div class="s_img" style="background: url('../images/make_2.jpg') no-repeat center center;background-size: contain;"></div>
+                    <div class="s_img" style="background: url('../images/make_3.jpg') no-repeat center center;background-size: contain;"></div>
+                    <div class="s_img" style="background: url('../images/make_4.jpg') no-repeat center center;background-size: contain;"></div>
+                </div>
+                <div class="b_right"></div>`
+
+            $('.infoImgSearch').html(imgHtml)
+        })
+
+        $('.infoImgSearch').on('click','.s_img',function(){
+            $('.s_img').attr('class','s_img')
+            $(this).attr('class','s_img active')
+            let url = $(this).css('background-image')
+            $('.mainImg').css('background-image',url)
+        })
+
+        //加入购物车
+        $('#addCars').click(()=>{
+            let data = {
+                code:"xs1",
+                name:"",
+                typeId:"xst1",
+                typeWord:"",
+                imgUrl:"",
+                number:"",
+                price:""
+            }
+            data.name = commodity.name
+            data.typeWord = commodity.model
+            data.imgUrl = '../images/' + commodity.address
+            data.number = $("#amount").val()
+            data.price = commodity.price
+            $.post('http://localhost:8080/postCart',data,function(){
+                
+                alert('添加成功')
+            })
+        })
+
+        //添加
+        $(".amountAdd").click(()=>{
+            let num = parseInt($("#amount").val())
+            num += 1
+            $("#amount").val(num)
+        })
+        //减少
+        $(".amountReduce").click(()=>{
+            if($("#amount").val()<2){
+                alert('数量太少')
+            }else{
+                let num = parseInt($("#amount").val())
+                num -= 1
+                $("#amount").val(num)
+            }
+        })
     });
 
 </script>
@@ -43,7 +113,7 @@
             <li class="breadcrumb-item " aria-current="page">美妆个护</li>
             <li class="breadcrumb-item " aria-current="page">香水</li>
             <li class="breadcrumb-item " aria-current="page">迪奥</li>
-            <li class="breadcrumb-item " aria-current="page">迪奥真我香水</li>
+            <li class="breadcrumb-item " aria-current="page" id="breadName">迪奥真我香水</li>
         </ol>
     </nav>
 
@@ -63,21 +133,21 @@
         </div>
     
         <div class="item_info">
-            <div class="main-title">Diro 真我香水 克里斯汀迪奥 全新 30ml</div>
+            <div class="main-title" id="mainName">Diro 真我香水 克里斯汀迪奥 全新 30ml</div>
             <div class="main-describe">“ 开业钜惠 北京直销 不光低价 真才靠谱 ”</div>
     
             <div class="promoPrice">本店价格:<div class="price">￥368.0</div></div>
             <div class="promoCoin">消费积分:<div >18R</div></div>
     
-            <div class="typeSearch">
+            <div class="infoTypeSearch">
                 <div>型号选择：</div>
                 <div class="typeBtns">
                     <div class="btn">30ml</div>
-                    <div class="btn">30ml</div>
+                    <div class="btn">50ml</div>
                     <div class="btn">100ml</div>
                 </div>
             </div>
-            <div class="typeSearch">
+            <div class="infoTypeSearch">
                 <div>颜色选择：</div>
                 <div class="typeBtns">
                     <div class="btn">红色</div>
@@ -99,13 +169,13 @@
     
             <div class="join_car">
                 <div class="flex_line">
-                    <input id="amount" type="text" class="inputNum" value="1" maxlength="8" title="请输入购买量">
+                    <input id="amount" type="number" class="inputNum" value="1" maxlength="8" title="请输入购买量">
                     <div>
                         <div class="amountAdd">+</div>
                         <div class="amountReduce">-</div>
                     </div>
                 </div>
-                <img src="./images/j_car.png" />
+                <img id="addCars" src="./images/j_car.png" style="cursor: pointer;" />
             </div>
     
         </div>

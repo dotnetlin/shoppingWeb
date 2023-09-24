@@ -26,7 +26,95 @@
 <script>
     $(function () {
         //初始化
-       
+       //获取当前URL中的查询字符串部分（即问号后面的部分）
+        var params = new URLSearchParams(window.location.search);
+        let commodityName = params.get('commodity');
+
+        //获取商品
+        $.get('http://localhost:8080/getCommodity').then(res => {
+            let commodityListWord = ''
+            let commodityTabWord = ''
+            let commodityArray = JSON.parse(res).dependencies.shangping
+
+            commodityArray.forEach(e => {
+                commodityListWord += 
+                `<div class="commodityCard" title="`+e.id+`">
+                    <img src="./images/` + e.address + `">
+                    <div class="commodityName">`+
+                        e.name
+                    +`</div>
+                    <div class="commodityPrice">
+                        <div class="price">￥`+e.price+`</div>
+                        <div class="sales">`+e.inventory+`R</div>
+                    </div>
+                </div>`
+                commodityTabWord += `<div class="commodityCard" title="`+e.id+`">
+                    <img src="./images/` + e.address + `">
+                    <div class="commodityPrice"  style="justify-content: flex-start;">
+                        <div class="price">￥`+e.price+`</div>
+                        <div class="sales">`+e.inventory+`R</div>
+                    </div>
+                    <div class="commodityName" style="text-align: left;padding: 0 6px 6px 6px;">`+
+                        e.name
+                    +`</div>
+                    <div style="display: flex;justify-content: flex-start;padding: 0 6px;">
+                        <div class="heartBtn">
+                            <img src="./images/heart.png" />
+                            收藏
+                        </div>
+                        <div class="carsBtn" >
+                            <img src="./images/cars.png" />
+                            加入购物车
+                        </div>
+                    </div>
+                </div>`
+            })
+
+            $("#historyList").html(commodityListWord)
+            $('#commodityCardTab').html(commodityTabWord)
+        })
+
+        //获取类型
+        $.get('http://localhost:8080/getType').then(res=>{
+            let brandsListWord = ''
+            let priceList = ''
+            let carsArray = JSON.parse(res).dependencies.shangping[0].brands
+            let priceArray = JSON.parse(res).dependencies.shangping[0].priceRange
+
+            carsArray.forEach(e => {
+                brandsListWord += 
+                    `<div class="singleKeyWrap">
+                        <button type="button" class="next-btn-normal " >
+                            <span class="next-btn-helper" >`+ e.name +`</span>
+                        </button>
+                    </div>`
+                
+            });
+
+            priceArray.forEach(e=>{
+                priceList += 
+                    `<div class="singleKeyWrap">
+                        <button type="button" class="next-btn-normal">
+                            <span class="next-btn-helper">`+ e.range+`</span>
+                        </button>
+                    </div>`
+            })
+
+            $("#goodsName").html(carsArray[0].name)
+
+            $("#brand").html(brandsListWord)
+            $("#priceType").html(priceList)
+        })
+
+        //设置点击更改
+        $("#brand").on('click','button',function(e){
+            var childElement = $(this).find('span');
+            $("#goodsName").html(childElement.text())
+        })
+        $("#commodityCardTab").on('click','.commodityCard',function(){
+            var card = $(this).attr('title')
+            window.location.href = "./commodityInfo.html?id=" + card
+        })
     });
 
 </script>
@@ -40,7 +128,7 @@
             <li class="breadcrumb-item " aria-current="page">全部分类</li>
             <li class="breadcrumb-item " aria-current="page">美妆个护</li>
             <li class="breadcrumb-item " aria-current="page">香水</li>
-            <li class="breadcrumb-item active" aria-current="page">品牌：<a>香奈儿 </a><span
+            <li class="breadcrumb-item active" aria-current="page">品牌：<a id="goodsName">香奈儿 </a><span
                     class="glyphicon glyphicon glyphicon-remove" style="top: 2px;"></span></li>
         </ol>
     </nav>
@@ -49,132 +137,14 @@
         <div class="selector">
             <div class="selectorLine">
                 <div style="min-width: 100px;">品牌：</div>
-                <div class="filter">
-                    <div class="singleKeyWrap">
-                        <button type="button" class="next-btn-normal">
-                            <span class="next-btn-helper">PROYA/珀莱雅</span>
-                        </button>
-                    </div>
-                    <div class="singleKeyWrap">
-                        <button type="button" class="next-btn-normal">
-                            <span class="next-btn-helper">健美创研</span>
-                        </button>
-                    </div>
-                    <div class="singleKeyWrap">
-                        <button type="button" class="next-btn-normal">
-                            <span class="next-btn-helper">HBN（美妆）</span>
-                        </button>
-                    </div>
-                    <div class="singleKeyWrap">
-                        <button type="button" class="next-btn-normal">
-                            <span class="next-btn-helper">SWEET MINT</span>
-                        </button>
-                    </div>
-                    <div class="singleKeyWrap">
-                        <button type="button" class="next-btn-normal">
-                            <span class="next-btn-helper">HR/赫莲娜</span>
-                        </button>
-                    </div>
-                    <div class="singleKeyWrap">
-                        <button type="button" class="next-btn-normal">
-                            <span class="next-btn-helper">OEIEZ/欧亿姿</span>
-                        </button>
-                    </div>
-                    <div class="singleKeyWrap">
-                        <button type="button" class="next-btn-normal">
-                            <span class="next-btn-helper">CARSLAN/卡姿兰</span>
-                        </button>
-                    </div>
-                    <div class="singleKeyWrap">
-                        <button type="button" class="next-btn-normal">
-                            <span class="next-btn-helper">花知晓（美妆）</span>
-                        </button>
-                    </div>
-                    <div class="singleKeyWrap">
-                        <button type="button" class="next-btn-normal">
-                            <span class="next-btn-helper">GOOOD/古迪</span>
-                        </button>
-                    </div>
-                    <div class="singleKeyWrap">
-                        <button type="button" class="next-btn-normal">
-                            <span class="next-btn-helper">CHANEL/香奈儿</span>
-                        </button>
-                    </div>
-                    <div class="singleKeyWrap">
-                        <button type="button" class="next-btn-normal">
-                            <span class="next-btn-helper">JUDYDOLL/橘朵</span>
-                        </button>
-                    </div>
-                    <div class="singleKeyWrap">
-                        <button type="button" class="next-btn-normal">
-                            <span class="next-btn-helper">3CE/三熹玉</span>
-                        </button>
-                    </div>
-                    <div class="singleKeyWrap">
-                        <button type="button" class="next-btn-normal">
-                            <span class="next-btn-helper">PERFECT DIARY/完美日记</span>
-                        </button>
-                    </div>
-                    <div class="singleKeyWrap">
-                        <button type="button" class="next-btn-normal">
-                            <span class="next-btn-helper">TIMAGE/彩棠</span>
-                        </button>
-                    </div>
-                    <div class="singleKeyWrap">
-                        <button type="button" class="next-btn-normal">
-                            <span class="next-btn-helper">DIOR/迪奥</span>
-                        </button>
-                    </div>
-                    <div class="singleKeyWrap">
-                        <button type="button" class="next-btn-normal">
-                            <span class="next-btn-helper">LA MER/海蓝之谜</span>
-                        </button>
-                    </div>
-                    <div class="singleKeyWrap">
-                        <button type="button" class="next-btn-normal">
-                            <span class="next-btn-helper">花西子</span>
-                        </button>
-                    </div>
+                <div class="filter" id="brand">
+                    
                 </div>
             </div>
             <div class="selectorLine">
                 <div style="min-width: 100px;">价格：</div>
-                <div class="filter">
-                    <div class="singleKeyWrap">
-                        <button type="button" class="next-btn-normal">
-                            <span class="next-btn-helper">0-199</span>
-                        </button>
-                    </div>
-                    <div class="singleKeyWrap">
-                        <button type="button" class="next-btn-normal">
-                            <span class="next-btn-helper">200-399</span>
-                        </button>
-                    </div>
-                    <div class="singleKeyWrap">
-                        <button type="button" class="next-btn-normal">
-                            <span class="next-btn-helper">400-599</span>
-                        </button>
-                    </div>
-                    <div class="singleKeyWrap">
-                        <button type="button" class="next-btn-normal">
-                            <span class="next-btn-helper">600-899</span>
-                        </button>
-                    </div>
-                    <div class="singleKeyWrap">
-                        <button type="button" class="next-btn-normal">
-                            <span class="next-btn-helper">900-1299</span>
-                        </button>
-                    </div>
-                    <div class="singleKeyWrap">
-                        <button type="button" class="next-btn-normal">
-                            <span class="next-btn-helper">1300-1399</span>
-                        </button>
-                    </div>
-                    <div class="singleKeyWrap">
-                        <button type="button" class="next-btn-normal">
-                            <span class="next-btn-helper">1400以上</span>
-                        </button>
-                    </div>
+                <div class="filter" id="priceType">
+                    
                 </div>
             </div>
             <div class="selectorLine">
@@ -260,47 +230,7 @@
                 <span class="brow">浏览记录</span>
                 <span>清空</span>
             </div>
-            <div class="historyItem">
-                <div class="commodityCard">
-                    <img src="./images/per_1.jpg">
-                    <div class="commodityName">
-                        Diro/迪奥香水两件套装
-                    </div>
-                    <div class="commodityPrice">
-                        <div class="price">￥368.0</div>
-                        <div class="sales">18R</div>
-                    </div>
-                </div>
-                <div class="commodityCard">
-                    <img src="./images/per_1.jpg">
-                    <div class="commodityName">
-                        Diro/迪奥香水两件套装
-                    </div>
-                    <div class="commodityPrice">
-                        <div class="price">￥368.0</div>
-                        <div class="sales">18R</div>
-                    </div>
-                </div>
-                <div class="commodityCard">
-                    <img src="./images/per_1.jpg">
-                    <div class="commodityName">
-                        Diro/迪奥香水两件套装
-                    </div>
-                    <div class="commodityPrice">
-                        <div class="price">￥368.0</div>
-                        <div class="sales">18R</div>
-                    </div>
-                </div>
-                <div class="commodityCard">
-                    <img src="./images/per_1.jpg">
-                    <div class="commodityName">
-                        Diro/迪奥香水两件套装
-                    </div>
-                    <div class="commodityPrice">
-                        <div class="price">￥368.0</div>
-                        <div class="sales">18R</div>
-                    </div>
-                </div>
+            <div class="historyItem" id="historyList">
             </div>
         </div>
 
@@ -314,307 +244,8 @@
                 </div>
             </div>
 
-            <div class="cardlist" >
-                <div class="commodityCard">
-                    <img src="./images/per_1.jpg">
-                    <div class="commodityPrice"  style="justify-content: flex-start;">
-                        <div class="price">￥368.0</div>
-                        <div class="sales">18R</div>
-                    </div>
-                    <div class="commodityName" style="text-align: left;padding: 0 6px 6px 6px;">
-                        Diro/迪奥香水两件套装
-                    </div>
-                    <div style="display: flex;justify-content: flex-start;padding: 0 6px;">
-                        <div class="heartBtn">
-                            <img src="./images/heart.png" />
-                            收藏
-                        </div>
-                        <div class="carsBtn">
-                            <img src="./images/cars.png" />
-                            加入购物车
-                        </div>
-                    </div>
-                </div>
-                <div class="commodityCard">
-                    <img src="./images/per_1.jpg">
-                    <div class="commodityPrice"  style="justify-content: flex-start;">
-                        <div class="price">￥368.0</div>
-                        <div class="sales">18R</div>
-                    </div>
-                    <div class="commodityName" style="text-align: left;padding: 0 6px 6px 6px;">
-                        Diro/迪奥香水两件套装
-                    </div>
-                    <div style="display: flex;justify-content: flex-start;padding: 0 6px;">
-                        <div class="heartBtn">
-                            <img src="./images/heart.png" />
-                            收藏
-                        </div>
-                        <div class="carsBtn">
-                            <img src="./images/cars.png" />
-                            加入购物车
-                        </div>
-                    </div>
-                </div>
-                <div class="commodityCard">
-                    <img src="./images/per_1.jpg">
-                    <div class="commodityPrice"  style="justify-content: flex-start;">
-                        <div class="price">￥368.0</div>
-                        <div class="sales">18R</div>
-                    </div>
-                    <div class="commodityName" style="text-align: left;padding: 0 6px 6px 6px;">
-                        Diro/迪奥香水两件套装
-                    </div>
-                    <div style="display: flex;justify-content: flex-start;padding: 0 6px;">
-                        <div class="heartBtn">
-                            <img src="./images/heart.png" />
-                            收藏
-                        </div>
-                        <div class="carsBtn">
-                            <img src="./images/cars.png" />
-                            加入购物车
-                        </div>
-                    </div>
-                </div>
-                <div class="commodityCard">
-                    <img src="./images/per_1.jpg">
-                    <div class="commodityPrice"  style="justify-content: flex-start;">
-                        <div class="price">￥368.0</div>
-                        <div class="sales">18R</div>
-                    </div>
-                    <div class="commodityName" style="text-align: left;padding: 0 6px 6px 6px;">
-                        Diro/迪奥香水两件套装
-                    </div>
-                    <div style="display: flex;justify-content: flex-start;padding: 0 6px;">
-                        <div class="heartBtn">
-                            <img src="./images/heart.png" />
-                            收藏
-                        </div>
-                        <div class="carsBtn">
-                            <img src="./images/cars.png" />
-                            加入购物车
-                        </div>
-                    </div>
-                </div>
-                <div class="commodityCard">
-                    <img src="./images/per_1.jpg">
-                    <div class="commodityPrice"  style="justify-content: flex-start;">
-                        <div class="price">￥368.0</div>
-                        <div class="sales">18R</div>
-                    </div>
-                    <div class="commodityName" style="text-align: left;padding: 0 6px 6px 6px;">
-                        Diro/迪奥香水两件套装
-                    </div>
-                    <div style="display: flex;justify-content: flex-start;padding: 0 6px;">
-                        <div class="heartBtn">
-                            <img src="./images/heart.png" />
-                            收藏
-                        </div>
-                        <div class="carsBtn">
-                            <img src="./images/cars.png" />
-                            加入购物车
-                        </div>
-                    </div>
-                </div>
-                <div class="commodityCard">
-                    <img src="./images/per_1.jpg">
-                    <div class="commodityPrice"  style="justify-content: flex-start;">
-                        <div class="price">￥368.0</div>
-                        <div class="sales">18R</div>
-                    </div>
-                    <div class="commodityName" style="text-align: left;padding: 0 6px 6px 6px;">
-                        Diro/迪奥香水两件套装
-                    </div>
-                    <div style="display: flex;justify-content: flex-start;padding: 0 6px;">
-                        <div class="heartBtn">
-                            <img src="./images/heart.png" />
-                            收藏
-                        </div>
-                        <div class="carsBtn">
-                            <img src="./images/cars.png" />
-                            加入购物车
-                        </div>
-                    </div>
-                </div>
-                <div class="commodityCard">
-                    <img src="./images/per_1.jpg">
-                    <div class="commodityPrice"  style="justify-content: flex-start;">
-                        <div class="price">￥368.0</div>
-                        <div class="sales">18R</div>
-                    </div>
-                    <div class="commodityName" style="text-align: left;padding: 0 6px 6px 6px;">
-                        Diro/迪奥香水两件套装
-                    </div>
-                    <div style="display: flex;justify-content: flex-start;padding: 0 6px;">
-                        <div class="heartBtn">
-                            <img src="./images/heart.png" />
-                            收藏
-                        </div>
-                        <div class="carsBtn">
-                            <img src="./images/cars.png" />
-                            加入购物车
-                        </div>
-                    </div>
-                </div>
-                <div class="commodityCard">
-                    <img src="./images/per_1.jpg">
-                    <div class="commodityPrice"  style="justify-content: flex-start;">
-                        <div class="price">￥368.0</div>
-                        <div class="sales">18R</div>
-                    </div>
-                    <div class="commodityName" style="text-align: left;padding: 0 6px 6px 6px;">
-                        Diro/迪奥香水两件套装
-                    </div>
-                    <div style="display: flex;justify-content: flex-start;padding: 0 6px;">
-                        <div class="heartBtn">
-                            <img src="./images/heart.png" />
-                            收藏
-                        </div>
-                        <div class="carsBtn">
-                            <img src="./images/cars.png" />
-                            加入购物车
-                        </div>
-                    </div>
-                </div>
-                <div class="commodityCard">
-                    <img src="./images/per_1.jpg">
-                    <div class="commodityPrice"  style="justify-content: flex-start;">
-                        <div class="price">￥368.0</div>
-                        <div class="sales">18R</div>
-                    </div>
-                    <div class="commodityName" style="text-align: left;padding: 0 6px 6px 6px;">
-                        Diro/迪奥香水两件套装
-                    </div>
-                    <div style="display: flex;justify-content: flex-start;padding: 0 6px;">
-                        <div class="heartBtn">
-                            <img src="./images/heart.png" />
-                            收藏
-                        </div>
-                        <div class="carsBtn">
-                            <img src="./images/cars.png" />
-                            加入购物车
-                        </div>
-                    </div>
-                </div>
-                <div class="commodityCard">
-                    <img src="./images/per_1.jpg">
-                    <div class="commodityPrice"  style="justify-content: flex-start;">
-                        <div class="price">￥368.0</div>
-                        <div class="sales">18R</div>
-                    </div>
-                    <div class="commodityName" style="text-align: left;padding: 0 6px 6px 6px;">
-                        Diro/迪奥香水两件套装
-                    </div>
-                    <div style="display: flex;justify-content: flex-start;padding: 0 6px;">
-                        <div class="heartBtn">
-                            <img src="./images/heart.png" />
-                            收藏
-                        </div>
-                        <div class="carsBtn">
-                            <img src="./images/cars.png" />
-                            加入购物车
-                        </div>
-                    </div>
-                </div>
-                <div class="commodityCard">
-                    <img src="./images/per_1.jpg">
-                    <div class="commodityPrice"  style="justify-content: flex-start;">
-                        <div class="price">￥368.0</div>
-                        <div class="sales">18R</div>
-                    </div>
-                    <div class="commodityName" style="text-align: left;padding: 0 6px 6px 6px;">
-                        Diro/迪奥香水两件套装
-                    </div>
-                    <div style="display: flex;justify-content: flex-start;padding: 0 6px;">
-                        <div class="heartBtn">
-                            <img src="./images/heart.png" />
-                            收藏
-                        </div>
-                        <div class="carsBtn">
-                            <img src="./images/cars.png" />
-                            加入购物车
-                        </div>
-                    </div>
-                </div>
-                <div class="commodityCard">
-                    <img src="./images/per_1.jpg">
-                    <div class="commodityPrice"  style="justify-content: flex-start;">
-                        <div class="price">￥368.0</div>
-                        <div class="sales">18R</div>
-                    </div>
-                    <div class="commodityName" style="text-align: left;padding: 0 6px 6px 6px;">
-                        Diro/迪奥香水两件套装
-                    </div>
-                    <div style="display: flex;justify-content: flex-start;padding: 0 6px;">
-                        <div class="heartBtn">
-                            <img src="./images/heart.png" />
-                            收藏
-                        </div>
-                        <div class="carsBtn">
-                            <img src="./images/cars.png" />
-                            加入购物车
-                        </div>
-                    </div>
-                </div>
-                <div class="commodityCard">
-                    <img src="./images/per_1.jpg">
-                    <div class="commodityPrice"  style="justify-content: flex-start;">
-                        <div class="price">￥368.0</div>
-                        <div class="sales">18R</div>
-                    </div>
-                    <div class="commodityName" style="text-align: left;padding: 0 6px 6px 6px;">
-                        Diro/迪奥香水两件套装
-                    </div>
-                    <div style="display: flex;justify-content: flex-start;padding: 0 6px;">
-                        <div class="heartBtn">
-                            <img src="./images/heart.png" />
-                            收藏
-                        </div>
-                        <div class="carsBtn">
-                            <img src="./images/cars.png" />
-                            加入购物车
-                        </div>
-                    </div>
-                </div>
-                <div class="commodityCard">
-                    <img src="./images/per_1.jpg">
-                    <div class="commodityPrice"  style="justify-content: flex-start;">
-                        <div class="price">￥368.0</div>
-                        <div class="sales">18R</div>
-                    </div>
-                    <div class="commodityName" style="text-align: left;padding: 0 6px 6px 6px;">
-                        Diro/迪奥香水两件套装
-                    </div>
-                    <div style="display: flex;justify-content: flex-start;padding: 0 6px;">
-                        <div class="heartBtn">
-                            <img src="./images/heart.png" />
-                            收藏
-                        </div>
-                        <div class="carsBtn">
-                            <img src="./images/cars.png" />
-                            加入购物车
-                        </div>
-                    </div>
-                </div>
-                <div class="commodityCard">
-                    <img src="./images/per_1.jpg">
-                    <div class="commodityPrice"  style="justify-content: flex-start;">
-                        <div class="price">￥368.0</div>
-                        <div class="sales">18R</div>
-                    </div>
-                    <div class="commodityName" style="text-align: left;padding: 0 6px 6px 6px;">
-                        Diro/迪奥香水两件套装
-                    </div>
-                    <div style="display: flex;justify-content: flex-start;padding: 0 6px;">
-                        <div class="heartBtn">
-                            <img src="./images/heart.png" />
-                            收藏
-                        </div>
-                        <div class="carsBtn">
-                            <img src="./images/cars.png" />
-                            加入购物车
-                        </div>
-                    </div>
-                </div>
+            <div class="cardlist" id="commodityCardTab">
+                
             </div>
 
             <!--分页-->
